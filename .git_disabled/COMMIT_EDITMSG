@@ -1,0 +1,9 @@
+feat: Add Series, MyList pages and update Upgrade page
+
+- Add Series page with hero section, genre dropdown, and 5 movie sections
+- Add MyList page with responsive poster grid (6->4->3 columns)
+- Update Upgrade page to match native HTML with 3 pricing tiers
+- Add Series.css (680+ lines) with complete styling
+- Add MyList.css (380 lines) with responsive grid layout
+- Update App.css (413 lines) with all component styles from native
+- All pages fully responsive and match native HTML design
