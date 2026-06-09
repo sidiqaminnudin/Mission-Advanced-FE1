@@ -4,7 +4,7 @@ import { useMyList } from '../contexts/MyListContext';
 import '../styles/MyList.css';
 
 function MyList() {
-  const { myListMovies, availableMovies, handleDelete, handleAdd, isInMyList } = useMyList();
+  const { myListMovies, availableMovies, handleDelete, handleAdd, isInMyList, loading, error } = useMyList();
   const [showMovieCatalog, setShowMovieCatalog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -15,9 +15,11 @@ function MyList() {
     'Britania', 'KDrama', 'Romantis', ''
   ];
 
-  const handleAddMovie = (movieId) => {
-    handleAdd(movieId);
-    alert('Film berhasil ditambahkan ke Daftar Saya!');
+  const handleAddMovie = async (movieId) => {
+    const success = await handleAdd(movieId);
+    if (success) {
+      alert('Film berhasil ditambahkan ke Daftar Saya!');
+    }
   };
 
   // Filter movies that are not yet in user's list
@@ -33,6 +35,33 @@ function MyList() {
       <Navbar />
 
       <main className="page-content">
+        {/* Loading State */}
+        {loading && (
+          <div style={{
+            textAlign: 'center',
+            padding: '60px 20px',
+            color: '#999'
+          }}>
+            <div style={{ fontSize: '48px', marginBottom: '20px' }}>⏳</div>
+            <h3>Memuat data...</h3>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div style={{
+            background: 'rgba(183, 31, 29, 0.1)',
+            border: '1px solid #b71f1d',
+            borderRadius: '8px',
+            padding: '20px',
+            marginBottom: '20px',
+            color: '#ff6b6b'
+          }}>
+            <h3 style={{ margin: '0 0 10px 0' }}>⚠️ Terjadi Kesalahan</h3>
+            <p style={{ margin: 0 }}>{error}</p>
+          </div>
+        )}
+
         <div style={{ 
           display: 'flex', 
           justifyContent: 'space-between', 

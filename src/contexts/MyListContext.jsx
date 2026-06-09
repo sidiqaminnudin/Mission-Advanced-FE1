@@ -1,266 +1,126 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react';
+import useMovies from '../hooks/useMovies';
 
-const MyListContext = createContext(null)
+const MyListContext = createContext(null);
 
 export const useMyList = () => {
-  const context = useContext(MyListContext)
+  const context = useContext(MyListContext);
   if (!context) {
-    throw new Error('useMyList must be used within MyListProvider')
+    throw new Error('useMyList must be used within MyListProvider');
   }
-  return context
-}
-
-// Katalog lengkap semua film yang tersedia
-const availableMovies = [
-  {
-    id: 1,
-    title: 'All of Us Are Dead',
-    image: '/images/poster4.png',
-    alt: 'All of Us Are Dead',
-    hasNewEpisode: true,
-    isTop10: true
-  },
-  {
-    id: 2,
-    title: 'Baymax',
-    image: '/images/poster5.png',
-    alt: 'Baymax',
-    hasNewEpisode: false,
-    isTop10: false
-  },
-  {
-    id: 3,
-    title: 'My Hero Academia',
-    image: '/images/poster1.png',
-    alt: 'My Hero Academia',
-    hasNewEpisode: true,
-    isTop10: false
-  },
-  {
-    id: 4,
-    title: 'Blue Lock',
-    image: '/images/poster3.png',
-    alt: 'Blue Lock',
-    hasNewEpisode: true,
-    isTop10: false
-  },
-  {
-    id: 5,
-    title: 'Ted Lasso',
-    image: '/images/poster7.png',
-    alt: 'Ted Lasso',
-    hasNewEpisode: true,
-    isTop10: true
-  },
-  {
-    id: 6,
-    title: 'Duty After School',
-    image: '/images/poster12.png',
-    alt: 'Duty After School',
-    hasNewEpisode: true,
-    isTop10: true
-  },
-  {
-    id: 7,
-    title: 'Suzume',
-    image: '/images/poster1.png',
-    alt: 'Suzume',
-    hasNewEpisode: false,
-    isTop10: true
-  },
-  {
-    id: 8,
-    title: 'Guardians of the Galaxy',
-    image: '/images/poster8.png',
-    alt: 'Guardians of the Galaxy',
-    hasNewEpisode: false,
-    isTop10: true
-  },
-  {
-    id: 9,
-    title: 'Spider-Man',
-    image: '/images/poster6.png',
-    alt: 'Spider-Man',
-    hasNewEpisode: false,
-    isTop10: false
-  },
-  {
-    id: 10,
-    title: 'Sonic 2',
-    image: '/images/poster9.png',
-    alt: 'Sonic 2',
-    hasNewEpisode: false,
-    isTop10: false
-  },
-  {
-    id: 11,
-    title: 'Megan',
-    image: '/images/poster10.png',
-    alt: 'Megan',
-    hasNewEpisode: false,
-    isTop10: false
-  },
-  {
-    id: 12,
-    title: 'Dilan 1991',
-    image: '/images/poster11.png',
-    alt: 'Dilan 1991',
-    hasNewEpisode: false,
-    isTop10: false
-  },
-  {
-    id: 13,
-    title: 'The Last of Us',
-    image: '/images/poster1.png',
-    alt: 'The Last of Us',
-    hasNewEpisode: true,
-    isTop10: true
-  },
-  {
-    id: 14,
-    title: 'Wednesday',
-    image: '/images/poster2.png',
-    alt: 'Wednesday',
-    hasNewEpisode: true,
-    isTop10: true
-  },
-  {
-    id: 15,
-    title: 'Stranger Things',
-    image: '/images/poster3.png',
-    alt: 'Stranger Things',
-    hasNewEpisode: false,
-    isTop10: true
-  }
-]
+  return context;
+};
 
 export const MyListProvider = ({ children }) => {
-  // Daftar film yang sudah ditambahkan user (dimulai dengan beberapa film)
-  const [myListMovies, setMyListMovies] = useState([
-    {
-      id: 1,
-      title: 'All of Us Are Dead',
-      image: '/images/poster4.png',
-      alt: 'All of Us Are Dead',
-      hasNewEpisode: true,
-      isTop10: true
-    },
-    {
-      id: 2,
-      title: 'Baymax',
-      image: '/images/poster5.png',
-      alt: 'Baymax',
-      hasNewEpisode: false,
-      isTop10: false
-    },
-    {
-      id: 3,
-      title: 'My Hero Academia',
-      image: '/images/poster1.png',
-      alt: 'My Hero Academia',
-      hasNewEpisode: true,
-      isTop10: false
-    },
-    {
-      id: 4,
-      title: 'Blue Lock',
-      image: '/images/poster3.png',
-      alt: 'Blue Lock',
-      hasNewEpisode: true,
-      isTop10: false
-    },
-    {
-      id: 5,
-      title: 'Ted Lasso',
-      image: '/images/poster7.png',
-      alt: 'Ted Lasso',
-      hasNewEpisode: true,
-      isTop10: true
-    },
-    {
-      id: 6,
-      title: 'Duty After School',
-      image: '/images/poster12.png',
-      alt: 'Duty After School',
-      hasNewEpisode: true,
-      isTop10: true
-    },
-    {
-      id: 7,
-      title: 'Suzume',
-      image: '/images/poster1.png',
-      alt: 'Suzume',
-      hasNewEpisode: false,
-      isTop10: true
-    },
-    {
-      id: 8,
-      title: 'Guardians of the Galaxy',
-      image: '/images/poster8.png',
-      alt: 'Guardians of the Galaxy',
-      hasNewEpisode: false,
-      isTop10: true
-    },
-    {
-      id: 9,
-      title: 'Spider-Man',
-      image: '/images/poster6.png',
-      alt: 'Spider-Man',
-      hasNewEpisode: false,
-      isTop10: false
-    },
-    {
-      id: 10,
-      title: 'Sonic 2',
-      image: '/images/poster9.png',
-      alt: 'Sonic 2',
-      hasNewEpisode: false,
-      isTop10: false
-    },
-    {
-      id: 11,
-      title: 'Megan',
-      image: '/images/poster10.png',
-      alt: 'Megan',
-      hasNewEpisode: false,
-      isTop10: false
-    },
-    {
-      id: 12,
-      title: 'Dilan 1991',
-      image: '/images/poster11.png',
-      alt: 'Dilan 1991',
-      hasNewEpisode: false,
-      isTop10: false
+  // Gunakan custom hook untuk API operations
+  const {
+    movies: apiMovies,
+    loading,
+    error,
+    fetchMovies,
+    addMovie: addMovieAPI,
+    updateMovie: updateMovieAPI, // Gunakan PUT (full update) karena MockAPI tidak support PATCH
+    deleteMovie: deleteMovieAPI,
+  } = useMovies(true); // autoFetch = true
+
+  // State untuk available movies (katalog lengkap)
+  const [availableMovies, setAvailableMovies] = useState([]);
+  
+  // State untuk myListMovies (daftar user)
+  const [myListMovies, setMyListMovies] = useState([]);
+
+  // Sinkronisasi data dari API ke state lokal
+  useEffect(() => {
+    if (apiMovies && apiMovies.length > 0) {
+      // Pisahkan movies berdasarkan flag inMyList
+      const myList = apiMovies.filter(movie => movie.inMyList === true);
+      setMyListMovies(myList);
+      setAvailableMovies(apiMovies);
     }
-  ])
+  }, [apiMovies]);
 
-  // CRUD Operations following reference repository patterns
-
-  // Delete: Using .filter() to remove item by id
-  const handleDelete = (id) => {
-    setMyListMovies(myListMovies.filter(movie => movie.id !== id))
-  }
-
-  // Add: Using spread operator to add movie from catalog
-  const handleAdd = (movieId) => {
-    const movieToAdd = availableMovies.find(movie => movie.id === movieId)
-    if (movieToAdd && !myListMovies.find(m => m.id === movieId)) {
-      setMyListMovies([...myListMovies, movieToAdd])
+  // DELETE: Menghapus movie dari daftar user (set inMyList = false via PUT)
+  const handleDelete = async (id) => {
+    try {
+      const normalizedId = String(id);
+      
+      // Cari data lengkap movie dari daftar
+      const movieToUpdate = availableMovies.find(m => String(m.id) === normalizedId);
+      
+      if (!movieToUpdate) {
+        alert('Film tidak ditemukan');
+        return;
+      }
+      
+      // Gunakan PUT dengan data lengkap + inMyList: false
+      // MockAPI tidak mendukung PATCH, harus PUT dengan full data
+      await updateMovieAPI(normalizedId, { ...movieToUpdate, inMyList: false });
+      
+      // Refresh data dari API
+      await fetchMovies();
+    } catch (err) {
+      console.error('Error removing movie from list:', err);
+      alert('Gagal menghapus film dari daftar. Silakan coba lagi.');
     }
-  }
+  };
 
-  // Update: Using .map() to update specific item by id
-  const handleUpdate = (id, updatedData) => {
-    setMyListMovies(myListMovies.map(movie => 
-      movie.id === id ? { ...movie, ...updatedData } : movie
-    ))
-  }
+  // ADD: Menambahkan movie ke daftar user (set inMyList = true via PUT)
+  // Returns true jika berhasil, false jika gagal
+  const handleAdd = async (movieId) => {
+    try {
+      const normalizedId = String(movieId);
+      
+      // Cek apakah sudah ada di daftar user
+      if (myListMovies.some(m => String(m.id) === normalizedId)) {
+        alert('Film sudah ada di Daftar Saya');
+        return false;
+      }
+
+      // Cari data lengkap movie dari katalog
+      const movieToAdd = availableMovies.find(movie => String(movie.id) === normalizedId);
+      
+      if (!movieToAdd) {
+        console.error('Movie not found in available movies:', movieId);
+        alert('Film tidak ditemukan di katalog');
+        return false;
+      }
+      
+      // Gunakan PUT dengan data lengkap + inMyList: true
+      // MockAPI tidak mendukung PATCH, harus PUT dengan full data
+      await updateMovieAPI(normalizedId, { ...movieToAdd, inMyList: true });
+      
+      // Refresh data dari API
+      await fetchMovies();
+      return true;
+    } catch (err) {
+      console.error('Error adding movie:', err);
+      alert('Gagal menambahkan film. Silakan coba lagi.');
+      return false;
+    }
+  };
+
+  // UPDATE: Update data movie (untuk keperluan lain)
+  const handleUpdate = async (id, updatedData) => {
+    try {
+      const normalizedId = String(id);
+      const currentMovie = availableMovies.find(m => String(m.id) === normalizedId);
+      
+      if (!currentMovie) {
+        throw new Error('Movie tidak ditemukan');
+      }
+      
+      await updateMovieAPI(normalizedId, { ...currentMovie, ...updatedData });
+      await fetchMovies();
+    } catch (err) {
+      console.error('Error updating movie:', err);
+      alert('Gagal mengupdate film. Silakan coba lagi.');
+    }
+  };
 
   // Check if movie is already in user's list
   const isInMyList = (movieId) => {
-    return myListMovies.some(movie => movie.id === movieId)
-  }
+    return myListMovies.some(movie => String(movie.id) === String(movieId));
+  };
 
   const value = {
     myListMovies,
@@ -268,12 +128,15 @@ export const MyListProvider = ({ children }) => {
     handleDelete,
     handleAdd,
     handleUpdate,
-    isInMyList
-  }
+    isInMyList,
+    loading,
+    error,
+    refreshMovies: fetchMovies,
+  };
 
   return (
     <MyListContext.Provider value={value}>
       {children}
     </MyListContext.Provider>
-  )
-}
+  );
+};
