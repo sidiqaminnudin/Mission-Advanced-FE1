@@ -12,8 +12,7 @@ dist
 dist-ssr
 *.local
 
-# Environment variables - JANGAN di-push ke GitHub!
-.env
+# Environment variables
 .env.local
 .env.production
 
