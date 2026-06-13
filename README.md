@@ -1,228 +1,110 @@
-# Chill - React Streaming Platform
+# 🎬 Chill — Movie Streaming App (ReactJS + REST API)
 
-Modern streaming platform built with React, featuring authentication, responsive design, and accessibility compliance.
+## 📋 Deskripsi Project
 
-## 🎯 Overview
-
-This is a React conversion of the Chill streaming platform. The application provides a Netflix-like experience with user authentication, movie browsing, and a responsive interface.
-
-## ✨ Features
-
-### Implemented
-- ✅ User Authentication (Login/Register)
-- ✅ Form Validation with Real-time Feedback
-- ✅ Protected Routes
-- ✅ Responsive Design (Mobile & Desktop)
-- ✅ Accessibility Compliant (WCAG 2.1 Level AA)
-- ✅ Modern React Patterns (Hooks, Context API)
-- ✅ Client-side Routing (React Router v6)
-- ✅ Session Persistence (localStorage)
-- ✅ Loading States & Error Handling
-- ✅ Password Visibility Toggle
-- ✅ Dropdown Navigation Menu
-
-### Simplified for MVP
-- 📝 Simulated Authentication (no backend)
-- 📝 Static Movie Data (no API integration)
-- 📝 Basic Home Page (4 movie sections)
-- 📝 Placeholder Links (series, profile, etc.)
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Navigate to the project directory:
-```bash
-cd react-chill
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-### Running the Application
-
-#### Development Mode
-```bash
-npm run dev
-```
-The app will be available at `http://localhost:5173`
-
-#### Build for Production
-```bash
-npm run build
-```
-
-#### Preview Production Build
-```bash
-npm run preview
-```
-
-## 📁 Project Structure
-
-```
-react-chill/
-├── public/              # Static assets
-│   ├── logo.png
-│   ├── avatar.png
-│   ├── google-icon.png
-│   ├── bg-auth.jpg
-│   ├── bg-auth2.jpg
-│   └── images/         # Movie posters
-├── src/
-│   ├── components/     # Reusable components
-│   │   └── Navbar.jsx
-│   ├── contexts/       # React Context providers
-│   │   └── AuthContext.jsx
-│   ├── pages/          # Page components
-│   │   ├── Login.jsx
-│   │   ├── Register.jsx
-│   │   └── Home.jsx
-│   ├── styles/         # CSS modules
-│   │   ├── index.css
-│   │   ├── App.css
-│   │   ├── Auth.module.css
-│   │   ├── Home.module.css
-│   │   └── Navbar.module.css
-│   ├── App.jsx         # Main app component
-│   └── main.jsx        # Entry point
-├── index.html
-├── package.json
-├── vite.config.js
-└── README.md
-```
-
-## 🛠️ Technologies Used
-
-- **React 18** - UI library
-- **React Router v6** - Client-side routing
-- **Vite** - Build tool and dev server
-- **CSS Modules** - Scoped styling
-- **Context API** - State management
-- **localStorage** - Session persistence
-
-## 🔐 Authentication
-
-The authentication system is currently simulated for demonstration purposes:
-
-- **Login**: Any non-empty username and password will work
-- **Register**: Creates a user object stored in localStorage
-- **Session**: Persists across page refreshes
-- **Logout**: Clears session and redirects to login
-
-### Test Credentials
-You can use any credentials, for example:
-- Username: `demo`
-- Password: `password123`
-
-## 🎨 Design Features
-
-### Accessibility
-- Semantic HTML elements
-- ARIA labels and roles
-- Keyboard navigation support
-- Skip links for screen readers
-- Focus indicators
-- Alt text for images
-
-### Responsive Design
-- Mobile-first approach
-- Breakpoints at 768px
-- Touch-friendly interface
-- Optimized layouts for all screen sizes
-
-### User Experience
-- Real-time form validation
-- Loading states during async operations
-- Error messages with clear guidance
-- Password visibility toggle
-- Smooth transitions and animations
-
-## 📝 Known Limitations
-
-1. **No Backend Integration**: Authentication is simulated client-side
-2. **Static Content**: Movie data is hardcoded
-3. **Limited Pages**: Only Login, Register, and Home are implemented
-4. **No Search**: Search functionality not yet implemented
-5. **No Video Playback**: Streaming functionality not implemented
-6. **Missing Assets**: Some movie posters may be placeholders
-
-## 🔮 Future Enhancements
-
-### Phase 1 - Core Features
-- [ ] Backend API integration
-- [ ] Real authentication with JWT
-- [ ] Database for user data
-- [ ] Movie API integration (TMDB, OMDB)
-
-### Phase 2 - Additional Pages
-- [ ] Series page
-- [ ] My List page
-- [ ] Profile page
-- [ ] Upgrade/Premium page
-- [ ] Series detail page
-- [ ] Watch page
-
-### Phase 3 - Advanced Features
-- [ ] Search functionality
-- [ ] Video player integration
-- [ ] Watchlist management
-- [ ] User preferences
-- [ ] Continue watching tracking
-- [ ] Recommendations engine
-
-### Phase 4 - Polish
-- [ ] Advanced animations
-- [ ] Skeleton loaders
-- [ ] Infinite scroll
-- [ ] Image lazy loading
-- [ ] PWA support
-- [ ] Dark/Light theme toggle
-
-## 🐛 Troubleshooting
-
-### Port Already in Use
-If port 5173 is already in use:
-```bash
-npm run dev -- --port 3000
-```
-
-### Dependencies Issues
-Clear node_modules and reinstall:
-```bash
-rm -rf node_modules package-lock.json
-npm install
-```
-
-### Build Errors
-Ensure you're using Node.js v16 or higher:
-```bash
-node --version
-```
-
-## 📄 License
-
-This project is for educational purposes.
-
-## 🤝 Contributing
-
-This is a demonstration project. For production use, consider:
-1. Implementing proper backend authentication
-2. Adding comprehensive testing
-3. Setting up CI/CD pipeline
-4. Implementing proper error tracking
-5. Adding analytics
-
-## 📞 Support
-
-For issues or questions about this React conversion, refer to the original project documentation or create an issue in the repository.
+Aplikasi **Chill** adalah platform streaming berbasis ReactJS yang memungkinkan pengguna mengelola daftar film pribadi mereka secara dinamis. Project ini merupakan hasil upgrade dari data statis (Array) menjadi integrasi penuh dengan **REST API menggunakan MockAPI.io**, memenuhi seluruh operasi **CRUD (Create, Read, Update, Delete)** secara dinamis.
 
 ---
 
-**Note**: This is a simplified React conversion focused on demonstrating modern React patterns and best practices. For production use, additional features and security measures should be implemented.
+## ✅ Implementasi CRUD dengan Dynamic API
+
+Seluruh operasi CRUD telah diimplementasikan secara dinamis menggunakan **Axios** sebagai HTTP client, terhubung ke **MockAPI** sebagai backend, dan terstruktur mengikuti pola arsitektur *Service Layer + Custom Hook + Context*.
+
+---
+
+### 📖 GET — Read Data (Mengambil Data dari API)
+
+Operasi **GET** diimplementasikan pada halaman **"Daftar Saya"** (`src/pages/MyList.jsx`).
+
+Saat halaman pertama kali dimuat, aplikasi secara otomatis memanggil REST API untuk mengambil seluruh data film yang tersimpan di server. Data ditampilkan dalam bentuk grid poster film yang responsif, lengkap dengan indikator *loading state* (⏳) dan *error state* (⚠️) untuk memberikan feedback kepada pengguna.
+
+- **Service function:** `getMovies()` → `GET /movies` — di `src/services/api/movieService.js`
+- **Custom Hook:** `useMovies()` — di `src/hooks/useMovies.js`
+- **Context:** `useMyList()` → `myListMovies`, `availableMovies` — di `src/contexts/MyListContext.jsx`
+
+---
+
+### ➕ POST (ADD) — Create Data (Menambah Data ke API)
+
+Operasi **POST** diimplementasikan melalui fitur **"Tambah Film"** pada halaman `src/pages/MyList.jsx`.
+
+Pengguna dapat membuka katalog film, mencari judul melalui fitur *real-time search*, lalu mengklik poster film untuk menambahkannya ke "Daftar Saya". Saat diklik, aplikasi mengirim request `POST` ke API untuk menyimpan data film secara persisten di server.
+
+- **Service function:** `addMovie(movieData)` → `POST /movies` — di `src/services/api/movieService.js`
+- **Context handler:** `handleAdd(movieId)` — di `src/contexts/MyListContext.jsx`
+- **UI trigger:** Klik poster film di panel katalog — `src/pages/MyList.jsx` baris 197
+
+---
+
+### ✏️ PUT/PATCH (UPDATE) — Update Data (Memperbarui Data di API)
+
+Operasi **PUT** (full update) dan **PATCH** (partial update) diimplementasikan pada layer service untuk memperbarui data film yang sudah ada di server.
+
+- **Service function PUT:** `updateMovie(id, movieData)` → `PUT /movies/:id` — di `src/services/api/movieService.js`
+- **Service function PATCH:** `patchMovie(id, movieData)` → `PATCH /movies/:id` — di `src/services/api/movieService.js`
+- **Context:** Tersedia di `src/contexts/MyListContext.jsx` untuk digunakan komponen manapun
+
+---
+
+### 🗑️ DELETE — Delete Data (Menghapus Data dari API)
+
+Operasi **DELETE** diimplementasikan melalui tombol **"×"** yang muncul pada setiap poster film di "Daftar Saya" (`src/pages/MyList.jsx`).
+
+Saat pengguna mengklik tombol tersebut, aplikasi mengirim request `DELETE` ke API dengan ID film yang sesuai. Data dihapus secara permanen dari server, dan UI diperbarui secara otomatis tanpa reload halaman.
+
+- **Service function:** `deleteMovie(id)` → `DELETE /movies/:id` — di `src/services/api/movieService.js`
+- **Context handler:** `handleDelete(movie.id)` — di `src/contexts/MyListContext.jsx`
+- **UI trigger:** Tombol `×` pada setiap poster — `src/pages/MyList.jsx` baris 302
+
+---
+
+## 🏗️ Arsitektur & Struktur Kode
+
+```
+src/
+├── services/
+│   └── api/
+│       ├── axiosConfig.js      # Axios instance + Interceptor (request/response logging)
+│       └── movieService.js     # Fungsi CRUD: getMovies, addMovie, updateMovie, deleteMovie
+├── hooks/
+│   └── useMovies.js            # Custom Hook: manajemen state loading, error, dan data
+├── contexts/
+│   └── MyListContext.jsx       # Global state management via React Context
+└── pages/
+    └── MyList.jsx              # Halaman utama UI dengan integrasi semua fungsi CRUD
+```
+
+---
+
+## ⚙️ Teknologi & Konfigurasi
+
+| Aspek | Implementasi |
+|-------|-------------|
+| HTTP Client | **Axios** (`npm install axios`) |
+| API Service | `src/services/api/movieService.js` (terpisah dari UI) |
+| Base URL | Disimpan di file **`.env`** → `VITE_API_BASE_URL` (tidak hardcode) |
+| Interceptor | **Axios Interceptor** untuk logging request/response terpusat |
+| State Management | **React Context API** (`useMyList`) + **Custom Hook** (`useMovies`) |
+| Backend/API | **MockAPI.io** — REST API dinamis |
+
+---
+
+## 🔧 Cara Menjalankan
+
+```bash
+# 1. Install dependencies
+npm install
+
+# 2. Pastikan file .env sudah berisi API URL
+# VITE_API_BASE_URL=https://your-id.mockapi.io/api/v1/
+
+# 3. Jalankan development server
+npm run dev
+```
+
+---
+
+## 🔗 Live Demo & Repository
+
+- **GitHub:** https://github.com/sidiqaminnudin/Mission-Advanced-FE1
+- **Vercel:** *(link deployment Vercel)*
