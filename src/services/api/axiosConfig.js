@@ -1,8 +1,21 @@
 import axios from 'axios';
 
+// Validasi environment variable - wajib ada sebelum build
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+if (!BASE_URL) {
+  console.error(
+    '❌ VITE_API_BASE_URL is not defined!\n' +
+    'Jika deploy di Vercel:\n' +
+    '1. Buka Vercel Dashboard → Project → Settings → Environment Variables\n' +
+    '2. Tambahkan: VITE_API_BASE_URL = https://6a2876924e1e783349a58b12.mockapi.io/api/v1/\n' +
+    '3. Klik Save → Redeploy'
+  );
+}
+
 // Membuat instance Axios dengan konfigurasi base
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: BASE_URL,
   timeout: 10000, // 10 detik timeout
   headers: {
     'Content-Type': 'application/json',
